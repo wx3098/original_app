@@ -7,11 +7,17 @@
 
 ## 実行手順
 $ git clone git@github.com:wx3098/original_app.git
+
 $ cd original_app
+
 $ bundle install
+
 $ rails db:create
+
 $ rails db:migrate
+
 $ rails db:seed
+
 $ rails s
 
 ## カタログ設計
