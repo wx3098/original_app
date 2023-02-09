@@ -35,6 +35,6 @@ https://drive.google.com/file/d/1VKhU1A1Oow9W1djOCwis-3UFDMuOq-nN/view?usp=shari
 ## ワイヤーフレーム
 https://drive.google.com/file/d/1H0SQnF5xgUkJqyrB-oHnlZEo9P-Tyhn6/view?usp=sharing
 
-![名称未設定ファイル drawio (6)](https://user-images.githubusercontent.com/87846014/217709599-13f92aae-be7f-4c70-9e51-e49ee7ad6620.png)
+![名称未設定ファイル drawio (7)](https://user-images.githubusercontent.com/87846014/217831316-907f474e-bb43-4d87-b01d-044feb1d2f35.png)
 
 ![名称未設定ファイル drawio (4)](https://user-images.githubusercontent.com/87846014/217709614-50304486-6a02-4629-805d-469cb2718468.png)
