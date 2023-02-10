@@ -27,7 +27,7 @@ https://docs.google.com/spreadsheets/d/13SgON1tIVAe8RujGUCfFdRUISY0xfgqsdYtsjQcI
 https://docs.google.com/spreadsheets/d/13SgON1tIVAe8RujGUCfFdRUISY0xfgqsdYtsjQcIxgc/edit?usp=sharing
 
 ## ER図
-https://drive.google.com/file/d/1EPVymxN66fbsVmlTVAMH0VZF0hza-3V4/view?usp=sharing
+https://drive.google.com/file/d/1MS2CHOpF-JvqDwHF-VMrsay3kuFoPKRu/view?usp=sharing
 
 ## 画面遷移
 https://drive.google.com/file/d/1VKhU1A1Oow9W1djOCwis-3UFDMuOq-nN/view?usp=sharing
