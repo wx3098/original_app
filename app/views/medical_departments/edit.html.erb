@@ -1,0 +1,23 @@
+<%= form_with(model: @medical_department , local: true ) do |form| %>
+  <% if @medical_department.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @medical_department.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @medical_department.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :"待ち時間" %>
+    <%= form.text_field :wait_time %>
+  </div>
+  <div>
+    <%= form.label :"診療科" %>
+    <%= form.text_field :name %>
+  </div>
+  <%= form.submit %>
+<% end %>

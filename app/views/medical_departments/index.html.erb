@@ -1,0 +1,26 @@
+<% if hospital_signed_in? %>
+<%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
+<% else %>
+<%= link_to "ログイン", new_hospital_session_path %>
+<% end %>
+<h1>病院情報</h1>
+
+<table>
+  <tr>
+    <th>待ち時間</th>
+    <th>診療科</th>
+  </tr>
+<% @medical_departments.each do |medical_department| %>
+  <tr>
+    <td><%= medical_department.wait_time %></td>
+    <td><%= medical_department.name %></td>
+    
+    <td><%= link_to '詳細を確認する', medical_department_path(medical_department.id) %></td>
+    <td><%= link_to '編集を確認する', edit_medical_department_path(medical_department.id) %></td>
+    <td><%= link_to '削除する', medical_departments_path(medical_department.id), method: :delete %></td>
+    <td><%= link_to 'ログアウト', destroy_hospital_session_path %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to '新しい病院情報', new_medical_department_path %>
