@@ -9,6 +9,8 @@ class MedicalDepartmentsController < ApplicationController
 
     def create
       @medical_department = MedicalDepartment.new(medical_department_params)
+      @medical_department.hospital_id = current_hospital.id
+    #   @medical_department.hospital_id = hospital.medical_departments.build(medical_department_params)
         if @medical_department.save            
         redirect_to medical_departments_path
        else
@@ -34,12 +36,16 @@ class MedicalDepartmentsController < ApplicationController
     end
 
     def destroy
-        @medical_department.destroy
+        @medical_department = MedicalDepartment.find(params[:id])    
+        if @medical_department.destroy
+            flash[:notice] = '削除しました'
+            redirect_to medical_departments_path
+        end
     end
 
     private
 
     def medical_department_params
-    params.require(:medical_department).permit(:wait_time, :name)
+    params.require(:medical_department).permit(:wait_time, :name, :hospital_id)
     end
 end
