@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   # devise_scope :user do
   #   root "users/sessions#new"
   # end
-  
+  devise_for :admin
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
+  # root to: 'main#index'
   devise_for :hospitals, controllers: {
     sessions: 'hospitals/sessions',
     password: 'hospitals/password',

@@ -1,6 +1,8 @@
 class MedicalDepartmentsController < ApplicationController
+    before_action :authenticate_hospital!, only:[:new, :show, :edit, :update, :destroy]
+
     def index
-        @medical_departments = MedicalDepartment.all
+        @medical_departments = current_hospital.medical_departments
     end
 
     def new
