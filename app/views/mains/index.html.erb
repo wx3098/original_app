@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+<% else %>
+<%= link_to "ログイン", new_user_session_path %>
+<% end %>
+
+<table>
+<tr>
+<th>お名前</th>
+</tr>
+<tr>
+<td><%= @user %></td>
+<td><%= current_user.name %>様</td>
+</tr>
+</table>

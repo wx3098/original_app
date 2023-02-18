@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <div>
+
+ <div>
     <%= form.label :"待ち時間" %>
     <%= form.number_field :wait_time %>
   </div>
@@ -19,5 +20,10 @@
     <%= form.label :"診療科" %>
     <%= form.text_field :name %>
   </div>
+    <%
+=begin%>
+ <%= form.select :wait_time, [["5", 5],[]]%> 
+<%
+=end%>
   <%= form.submit %>
 <% end %>

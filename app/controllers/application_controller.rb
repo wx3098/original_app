@@ -1,4 +1,13 @@
 class ApplicationController < ActionController::Base
+    def after_sign_in_path_for(resource)
+        case resource
+        when User
+          tops_path
+        when Hospital
+          medical_departments_path
+      end
+    end
+
     def after_sign_out_path_for(resource)
         case resource
         when :user   
@@ -6,5 +15,5 @@ class ApplicationController < ActionController::Base
         when :hospital  
           new_hospital_session_path
         end
-     end
+    end
 end

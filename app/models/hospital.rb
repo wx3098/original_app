@@ -4,4 +4,6 @@ class Hospital < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+        #  scope :name_search, -> (name) { where('name LIKE ?', "%#{params[:hospital][:name]}%")}
 end
