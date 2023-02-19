@@ -19,11 +19,13 @@
   <div>
     <%= form.label :"診療科" %>
     <%= form.text_field :name %>
-  </div>
-    <%
+  </div> 
+
+ <%
 =begin%>
- <%= form.select :wait_time, [["5", 5],[]]%> 
+ <%= form.select :wait_time, [["5", 5],[]]%>  
 <%
 =end%>
+
   <%= form.submit %>
 <% end %>

@@ -3,7 +3,7 @@
 <% else %>
 <%= link_to "ログイン", new_user_session_path %>
 <% end %>
-
+<%= form_with(model: local: true )%>
 <table>
 <tr>
 <th>お名前</th>
