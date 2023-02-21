@@ -36,7 +36,8 @@ gem 'ransack'
 gem 'jquery-rails'
 gem 'rails-ujs'
 gem 'factory_bot_rails'
-
+gem 'omniauth-line'
+gem 'dotenv-rails'
 
 group :development, :test do
 

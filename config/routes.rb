@@ -19,10 +19,16 @@ Rails.application.routes.draw do
   # }
 
   devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
     passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
+
+  devise_scope :user do
+    get '/users/auth/line/callback', to: 'users/omniauth_callbacks#line'
+  end
+  
   # root to: 'mains#index'
 
   devise_for :hospitals, controllers: {
