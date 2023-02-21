@@ -30,13 +30,18 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-gem 'rexml'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 gem 'ransack'
+gem 'jquery-rails'
+gem 'rails-ujs'
+gem 'factory_bot_rails'
+
 
 group :development, :test do
 
+  gem 'rspec-rails'
+  gem 'rexml'
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -55,7 +60,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end

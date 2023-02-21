@@ -1,0 +1,9 @@
+<h1>病院情報</h1>
+<p>待ち時間: <%= @hospital.name %></p>
+
+<h2>診療科</h2>
+<% @hospital.medical_departments.each do |department| %>
+  <%= link_to department.name, medical_department_path(department) %>
+<% end %>
+
+<%= link_to '戻る', medical_departments_path %>

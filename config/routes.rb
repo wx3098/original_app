@@ -30,12 +30,14 @@ Rails.application.routes.draw do
     password: 'hospitals/password',
     registrations: 'hospitals/registrations'
   }
+  resource :hospital
   devise_scope :hospital do
     get '/hospitals/sign_out' => 'hospitals/sessions#destroy'
   end
   root to: 'medical_departments#index'
   resources :medical_departments 
   resources :mains
+  resources :medical_appointments
  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
