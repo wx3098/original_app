@@ -1,13 +1,8 @@
 <h1>診療科情報</h1>
 <p>診療科名: <%= @medical_department.name %></p>
 
-<% if current_user %>
-  <h2>受付フォーム</h2>
+<h2>受付フォーム</h2>
   <%= link_to '受付', medical_appointments_path(medical_department_id: @medical_department.id), method: :post %> 
-<% end %>
 
-<% if current_hospital %>
-  <h2>呼び出しボタン</h2>
-<% end %>
 <%= link_to '戻る', medical_departments_path %>
 

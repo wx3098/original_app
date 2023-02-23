@@ -25,11 +25,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  devise_scope :user do
-    get '/users/auth/line/callback', to: 'users/omniauth_callbacks#line'
-  end
+  # devise_scope :user do
+  #   get '/users/auth/line/callback', to: 'users/omniauth_callbacks#line'
+  # end
   
-  # root to: 'mains#index'
+  root to: 'tops#index'
 
   devise_for :hospitals, controllers: {
     sessions: 'hospitals/sessions',
@@ -40,10 +40,13 @@ Rails.application.routes.draw do
   devise_scope :hospital do
     get '/hospitals/sign_out' => 'hospitals/sessions#destroy'
   end
-  root to: 'medical_departments#index'
-  resources :medical_departments 
+  # root to: 'medical_departments#index'
+  resources :medical_departments, only:[:index, :show] 
   resources :mains
   resources :medical_appointments
+  namespace :hospitals do
+    resources :medical_departments
+  end
  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -10,19 +10,20 @@
 <th>診療科名</th>
 <th>受付人数</th>
 </tr>
-<td><%= @user %></td>
+
+
 <td><%= current_user.name %>様</td>
 <%  @appoint_departments.each do |department| %>
 <tr>
   <td><%= department.name %></td>
   
-  <td><%= MedicalAppointment.where(medical_department_id: department.id).count%></td>
+  <td><% MedicalAppointment.where(medical_department_id: department.id).count%></td>
   <% my_appoint_at = current_user.medical_appointments.find_by(medical_department_id: department.id).created_at%>
   <% appoints_at = MedicalAppointment.where(medical_department_id: department.id).pluck(:created_at) %>
   <% wait_people = appoints_at.select{|appoint| appoint < my_appoint_at}.count %> 
 
-  <%= "待ち人数：#{wait_people}人" %> 
-  <%= wait_people * department.wait_time %>分
+ <td><%= "待ち人数：#{wait_people}人" %></td> 
+ <td><%= wait_people * department.wait_time %>分</td>
  <%
 =begin%>
  <%= "待ち人数：#{appoints_at.find_index(my_appoint_at)}人" %>  
@@ -31,11 +32,4 @@
 
 <% end %>
 </tr>
-
-<audio id="call_audio">
-  <source src="/../packs/audio/call.mp3"> type="audio/mp3">
-</audio>
-
-<button id="call-btn">入室ボタン</button>
-<%= javascript_include_tag 'application' %>
 </table>

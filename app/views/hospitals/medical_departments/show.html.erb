@@ -1,0 +1,21 @@
+<h1>診療科情報</h1>
+<p>診療科名: <%= @medical_department.name %></p>
+
+<% @medical_department.medical_appointments_users.each do |user| %>
+ <div><%= user.name %></div>
+<% end %>
+
+<audio id="call_audio">
+  <source src="/../packs/audio/call.mp3" type="audio/mp3">
+</audio>
+
+<h2>呼び出しボタン</h2>
+
+ <%= link_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments_users.first), method: :delete, id: 'call-btn' %>  
+
+<%= javascript_include_tag 'application' %>
+
+
+<%= link_to '戻る', medical_departments_path %>
+
+

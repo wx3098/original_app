@@ -18,11 +18,12 @@
     <td><%= medical_department.wait_time %></td>
     <td><%= medical_department.name %></td>
     
-    <td><%= link_to '詳細を確認する', medical_department_path(medical_department.id) %></td>
-    <td><%= link_to '編集を確認する', edit_medical_department_path(medical_department.id) %></td>
-    <td><%= link_to '削除する', medical_department_path(medical_department.id), method: :delete, data: { confirm: '削除しても良いですか？' } %></td>
+    <td><%= link_to '詳細を確認する', hospitals_medical_department_path(medical_department.id) %></td>
+    <td><%= link_to '編集を確認する', edit_hospitals_medical_department_path(medical_department.id) %></td>
+    <td><%= link_to '削除する', hospitals_medical_department_path(medical_department.id), method: :delete, data: { confirm: '削除しても良いですか？' } %></td> 
+  
   </tr>
 <% end %>
 </table>
 
-<%= link_to '新しい病院情報', new_medical_department_path %>
+<%= link_to '新しい病院情報', new_hospitals_medical_department_path %>

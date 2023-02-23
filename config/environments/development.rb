@@ -4,7 +4,8 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.hosts << "19a4-2400-2652-8520-c900-15be-8ece-1d7c-4178.jp.ngrok.io"
+  # config.hosts << "19a4-2400-2652-8520-c900-15be-8ece-1d7c-4178.jp.ngrok.io"
+  config.hosts.clear
 
 
   config.cache_classes = false
