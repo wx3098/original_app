@@ -10,5 +10,9 @@ class MedicalAppointmentsController < ApplicationController
   def destroy
     @medical_appointment = MedicalAppointment.find(params[:id])
     @medical_appointment.destroy
+    respond_to do |format|
+      format.html { redirect_to hospitals_medical_department_path(@medical_appointment.medical_department)  }
+      format.js { render layout: false }
+    end
   end
 end

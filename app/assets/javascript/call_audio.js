@@ -1,4 +1,3 @@
-
 const callAudio = document.getElementById('call_audio');
 const callBtn = document.getElementById('call-btn');
 

@@ -51,7 +51,7 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
   private
 
   def medical_department_params
-    binding.pry
+   
     params.require(:medical_department).permit(:name, :hospital_id).merge(wait_time: params[:wait_time].to_i)
   end
 end

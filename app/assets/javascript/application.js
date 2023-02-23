@@ -1,4 +1,4 @@
-//= require jquery_ujs
 //= require call_audio
 //= require medical_appointments
-require("jquery")
+//= require jquery
+//= require call_audio
