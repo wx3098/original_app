@@ -10,6 +10,5 @@ class MedicalAppointmentsController < ApplicationController
   def destroy
     @medical_appointment = MedicalAppointment.find(params[:id])
     @medical_appointment.destroy
-    
   end
 end

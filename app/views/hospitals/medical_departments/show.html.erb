@@ -11,9 +11,22 @@
 
 <h2>呼び出しボタン</h2>
 
- <%= link_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments_users.first), method: :delete, id: 'call-btn' %>  
+ <%= link_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments.first), method: :delete, id: 'call-btn' %>  
+ <%
+=begin%>
+ <%= link_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments_users.first), method: :delete, id: 'call-btn' %>   
+<%
+=end%>
 
-<%= javascript_include_tag 'application' %>
+<div id="wait-info">
+  <% appointments = @medical_department.medical_appointments.order(created_at: :asc) %>
+  <% wait_people = appointments.index { |appointment| appointment.user_id == current_user.id } %>
+  <% wait_time = wait_people * @medical_department.wait_time %>
+  <% message = "待ち人数：" + wait_people.to_s + "人、予想待ち時間：" + wait_time.to_s + "分" %>
+  <%= message %>
+</div>
+
+<%= javascript_include_tag 'application', 'medical_appointments' %>
 
 
 <%= link_to '戻る', medical_departments_path %>
