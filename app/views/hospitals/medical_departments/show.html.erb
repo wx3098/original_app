@@ -8,20 +8,20 @@
 <% end %>  
 <%
 =end%>
-<% total_appointments_count = @medical_department.medical_appointments.count %>
 <% my_appointment = current_user.medical_appointments.find_by(medical_department_id: @medical_department.id) %>
 <% my_appointment_position = @medical_department.medical_appointments.order(created_at: :asc).pluck(:user_id).index(current_user.id) %>
-<div id="wait-info">
-  <% if total_appointments_count > 0 %>
-    <% wait_people = my_appointment_position.present? ? my_appointment_position + 1 : total_appointments_count %>
+  <% if my_appointment_position %>
+    <%  wait_people = my_appointment_position + 1 %>
     <% wait_time = wait_people * @medical_department.wait_time %>
     <% message = "待ち人数：#{wait_people}人、予想待ち時間：#{wait_time}分" %>
     <%= message %>
   <% else %>
-    <p>現在、診察待ちの患者はいません。</p>
+    <% wait_people = @medical_department.medical_appointments.count %>
+    <% message = "現在、診察待ちの患者はいません。" %>
   <% end %>
-</div>
-
+  <div id="wait-info">
+    <%= message %>
+  </div>
 <audio id="call_audio">
   <source src="/../packs/audio/call.mp3" type="audio/mp3">
 </audio>
@@ -33,19 +33,20 @@
   <p>現在、診察待ちの患者はいません。</p>
 <% end %>
 
-<div id="wait-info">
-  <% appointments = @medical_department.medical_appointments.order(created_at: :asc) %>
-  <%
+<%
 =begin%>
- <% wait_people = appointments.index { |appointment| appointment.user_id == current_user.id } || @medical_department.medical_appointments.count %> 
+ <div id="wait-info">
+  <% appointments = @medical_department.medical_appointments.order(created_at: :asc) %>
+  <% 
 <%
 =end%>
-  <%
+ <%
 =begin%>
+ <% wait_people = appointments.index { |appointment| appointment.user_id == current_user.id } || @medical_department.medical_appointments.count %> 
  <% wait_time = wait_people * @medical_department.wait_time %>
   <% message = "待ち人数：" + wait_people.to_s + "人、予想待ち時間：" + wait_time.to_s + "分" %>
   <%= message %>
-</div>  
+</div>   
 <%
 =end%>
 
