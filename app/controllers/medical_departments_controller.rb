@@ -6,7 +6,7 @@ class MedicalDepartmentsController < ApplicationController
     end
 
     def show
-      @medical_department = MedicalDepartment.find(params[:id])
+      @medical_department = MedicalDepartment.includes(:medical_appointments_users).find(params[:id])
       @hospital = @medical_department.hospital
       @departments = @hospital.medical_departments
       # @medical_department = current_user.medical_departments

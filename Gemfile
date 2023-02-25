@@ -39,6 +39,12 @@ gem 'factory_bot_rails'
 gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
 gem 'dotenv-rails'
+gem 'line-bot-api'
+
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+
 
 group :development, :test do
 

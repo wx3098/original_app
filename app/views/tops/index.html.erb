@@ -4,6 +4,7 @@
 <%= link_to "ログイン", new_user_session_path %>
 <% end %>
 <P><%= current_user.name %>様のページ</p>
+<p><%= link_to '受付完了ページへ', mains_path %></p>
 <h1>病院検索</h1>
 <table>
 <tr>
@@ -29,11 +30,6 @@
     <td><%= medical_department.name %></td>
     <td><%= link_to '詳細', medical_department_path(medical_department) %></td>
 
-    <%
-=begin%>
- <td><%= link_to '受付をする', new_appointment_path(medical_department_id: medical_department.id) %></td> 
-<%
-=end%>
   </tr>
 <% end %>
 </table>

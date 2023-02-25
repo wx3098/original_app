@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     get '/hospitals/sign_out' => 'hospitals/sessions#destroy'
   end
   # root to: 'medical_departments#index'
+  post '/play_audio', to: 'medical_appointments#play_audio'
   resources :medical_departments, only:[:index, :show] 
   resources :mains
   resources :medical_appointments

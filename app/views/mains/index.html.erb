@@ -14,18 +14,33 @@
 </tr>
 
 
-<td><%= current_user.name %>様</td>
-<%  @appoint_departments.each do |department| %>
+  <% current_user.medical_appointments.each do |appointment| %>
+    <td><% department = appointment.medical_department %></td>
 <tr>
-  <td><%= department.name %></td>
+    <td><%= current_user.name %>様</td>
+    <td><%= department.name %></td>
+    <td><% MedicalAppointment.where(medical_department_id: department.id).count%></td>
+    <% my_appoint_at = appointment.created_at%>
+ 
+  <%
+=begin%>
+ <% my_appoint_at = current_user.medical_appointments.find_by(medical_department_id: department.id).created_at%>  
+<%
+=end%>
   
-  <td><% MedicalAppointment.where(medical_department_id: department.id).count%></td>
-  <% my_appoint_at = current_user.medical_appointments.find_by(medical_department_id: department.id).created_at%>
-  <% appoints_at = MedicalAppointment.where(medical_department_id: department.id).pluck(:created_at) %>
-  <% wait_people = appoints_at.select{|appoint| appoint < my_appoint_at}.count %> 
-  <td><%= wait_people * department.wait_time %>分</td>
-  <td><%= "待ち人数：#{wait_people}人" %></td> 
+    <% appoints_at = department.medical_appointments.pluck(:created_at) %>
+   
+    <%
+=begin%>
+ <% appoints_at = MedicalAppointment.where(medical_department_id: department.id).pluck(:created_at) %>  
+<%
+=end%>
+    <% wait_people = appoints_at.select{|appoint| appoint < my_appoint_at}.count %> 
+    <% wait_time = wait_people * department.wait_time %>
+    <td><%= wait_time %>分</td> 
+    <td><%= "待ち人数：#{wait_people}人" %></td> 
 
 <% end %>
 </tr>
 </table>
+<%= link_to '戻る', tops_path %>
