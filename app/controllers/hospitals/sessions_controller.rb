@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Hospitals::SessionsController < Devise::SessionsController
-  before_action :authenticate_user!, except: [:new, :create]
+  # before_action :authenticate_user!, except: [:new, :create, :new_guest]
   # before_action :configure_sign_in_params, only: [:create]
 
   def new_guest

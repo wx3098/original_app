@@ -8,35 +8,66 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
 <div class="col-md-12 text-center">
-   <p style="font-size: 30px;">HOORN -hospital order numberinf notice-</p>
+   <p style="font-size: 20px;">HOORN -hospital order numberinf notice-</p>
 </div>
   </head>
 
-  <body>
-  <%
-=begin%>
+ 
+  
  <header>
-    <% if user_signed_in? %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
     <% if current_user.try(:admin?) %>
       <%= link_to '管理者画面', rails_admin_path%>
     <% end %>
-  </header> 
+    <div class="col-md-12 text-center">
+    <% if user_signed_in? || hospital_signed_in? %>
+      <% if user_signed_in? %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% end %>
+      <% if hospital_signed_in? %>
+        <%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
+      <% end %>
+    <% else %>
+     <%= link_to "ユーザー新規登録画面", new_user_registration_path %>
+
+    <%= link_to "ユーザーログイン", new_user_session_path%>
+
+    <%
+=begin%>
+ <%= link_to "ユーザーゲストログイン", new_user_session_path %> 
 <%
 =end%>
 
-<footer class="fixed-bottom">
-<div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <P>HOORN -hospital order numbering notice-</p>
-         </div>
+    <%
+=begin%>
+ <%= link_to "管理者用ゲストログイン", new_user_session_path %> 
+<%
+=end%>
+
+    <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
+    
+
+    <%= link_to "病院様用ログイン", new_hospital_session_path %>
+
+    <%
+=begin%>
+ <%= link_to "病院様用ゲストログイン", new_hospital_session_path %> 
+<%
+=end%>
+    <% end %>
     </div>
-  </div>
-</footer>
+  </header> 
+
+
+
+
+  <body>
+  <div class="position-relative">
     <%= yield %>
+  </div>
+  <footer class="posision-absolute">
+  <div class="text-center p-3 mt-2 text-light">
+        <P>HOORN -hospital order numbering notice-</p>
+      </div>
+  </footer>
   </body>
 </html>
