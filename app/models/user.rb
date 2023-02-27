@@ -8,6 +8,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]
 
+  validates :name, presence: true
+  
          def social_profile(provider)
           social_profiles.select { |sp| sp.provider == provider.to_s }.first
         end
@@ -28,5 +30,22 @@ class User < ApplicationRecord
           self.raw_info = raw_info.to_json
           self.save!
         end
+
+        def self.guest
+          find_or_create_by!(email: 'guest@example.com') do |user|
+            user.password = SecureRandom.urlsafe_base64
+            user.name = "ゲスト"
+            user.admin = false
+          end
+        end
+
+
+        def self.guest_admin
+          find_or_create_by!(email: 'admin_guest@example.com') do |user|
+            user.password = SecureRandom.urlsafe_base64
+            user.name = "ゲスト管理者"
+            user.admin = true
+        end
+      end
   
 end

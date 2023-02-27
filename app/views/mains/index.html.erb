@@ -1,17 +1,18 @@
+<div class="container mt-5">
 <% if user_signed_in? %>
 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <% else %>
 <%= link_to "ログイン", new_user_session_path %>
 <% end %>
-
-<table>
-<tr>
-<th>お名前</th>
-<th>診療科名</th>
-<th>受付人数</th>
-<th>待ち時間</th>
-<th>待ち人数</th>
-</tr>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th scope="col">お名前</th>
+      <th scope="col">診療科名</th>
+      <th scope="col">受付人数</th>
+      <th scope="col">待ち時間</th>
+      <th scope="col">待ち人数</th>
+    </tr>
 
 
   <% current_user.medical_appointments.each do |appointment| %>
@@ -35,6 +36,7 @@
  <% appoints_at = MedicalAppointment.where(medical_department_id: department.id).pluck(:created_at) %>  
 <%
 =end%>
+
     <% wait_people = appoints_at.select{|appoint| appoint < my_appoint_at}.count %> 
     <% wait_time = wait_people * department.wait_time %>
     <td><%= wait_time %>分</td> 
@@ -44,3 +46,4 @@
 </tr>
 </table>
 <%= link_to '戻る', tops_path %>
+</diV>

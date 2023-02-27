@@ -3,12 +3,25 @@
 <% else %>
 <%= link_to "ログイン", new_hospital_session_path %>
 <% end %>
-<h1>病院情報</h1>
+<div class="container">
+ <h1 class="my-4">病院情報</h1>
 
-     
-    <p>病院名</p>
-    <td><%= current_hospital.name %></td>
+  <div class="row">
+      <div class="col-md-6">
+        <div class="card col-6">
+          <div class="card-body">
+            <h5 class="card-title bg-light">病院名</h5>
+            <p class="card-text"><%= current_hospital.name %></p>
+            </div>
+          </div>
+        </div>
+      </div>
 <table>
+  
+  <div class="my-4">
+    <h2 class="mb-3">診療科一覧</h2>
+
+    <table class="table table-striped">
   <tr>
     <th>待ち時間</th>
     <th>診療科</th>
@@ -18,7 +31,7 @@
     <td><%= medical_department.wait_time %></td>
     <td><%= medical_department.name %></td>
     
-    <td><%= link_to '詳細を確認する', hospitals_medical_department_path(medical_department.id) %></td>
+    <td><%= link_to '呼び出しボタン', hospitals_medical_department_path(medical_department.id) %></td>
     <td><%= link_to '編集を確認する', edit_hospitals_medical_department_path(medical_department.id) %></td>
     <td><%= link_to '削除する', hospitals_medical_department_path(medical_department.id), method: :delete, data: { confirm: '削除しても良いですか？' } %></td> 
   

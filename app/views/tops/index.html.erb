@@ -1,39 +1,35 @@
-<% if user_signed_in? %>
-<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-<% else %>
-<%= link_to "ログイン", new_user_session_path %>
-<% end %>
+ <%= link_to "病院様用ゲストログイン", new_hospital_session_path %>
+ <% if user_signed_in? %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+    <% if current_user.try(:admin?) %>
+      <%= link_to '管理者画面', rails_admin_path%>
+    <% end %>
+
+ <div class="text-center mt-5">
 <P><%= current_user.name %>様のページ</p>
 <p><%= link_to '受付完了ページへ', mains_path %></p>
 <h1>病院検索</h1>
-<table>
+<table class="table table-striped">
 <tr>
 <th>病院名</th>
 </tr>
-<%= form_with(url: tops_path, local: true,   scope: :hospital, method: :get) do |f| %>
-  <div class="title_name">
-    <%= f.label "病院名" %>
-    <%= f.text_field :name, class:"rform-control" %>
+  <%= form_with(url: tops_path, local: true,   scope: :hospital, method: :get) do |f| %>
+    <div class="title_name">
+      <%= f.label "病院名" %>
+      <%= f.text_field :name, class:"rform-control" %>
 
-  </div><br>
-  <%= f.submit "検索" %>
-<% end %>
+    </div><br>
+    <%= f.submit "検索" %>
+  <% end %>
 
-<% @hospitals.each do |h|%>
-  <td><%= h.name %></td>
-
-
-
-<% h.medical_departments.each do |medical_department| %>
-  <tr>
-    <td><%= medical_department.wait_time %></td>
-    <td><%= medical_department.name %></td>
-    <td><%= link_to '詳細', medical_department_path(medical_department) %></td>
-
-  </tr>
-<% end %>
-</table>
-<% end %>
+  <% @hospitals.each do |hospital|%>
+    <td><%= link_to hospital.name, hospital_path(hospital) %></td>
+  <% end %>
+  </table>
+</div>
 
 
 

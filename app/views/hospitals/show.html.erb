@@ -1,9 +1,19 @@
+<% if hospital_signed_in? %>
+<%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
+<% else %>
+<%= link_to "ログイン", new_hospital_session_path %>
+<% end %>
+
 <h1>病院情報</h1>
 <p>待ち時間: <%= @hospital.name %></p>
 
 <h2>診療科</h2>
+<div class="row">
 <% @hospital.medical_departments.each do |department| %>
-  <%= link_to department.name, medical_department_path(department) %>
+  <div class="col-sm-4">
+    <%= link_to department.name, medical_department_path(department) %>
+  </div>
 <% end %>
+</div>
 
 <%= link_to '戻る', medical_departments_path %>

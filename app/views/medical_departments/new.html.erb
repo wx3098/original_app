@@ -1,3 +1,8 @@
+<% if hospital_signed_in? %>
+<%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
+<% else %>
+<%= link_to "ログイン", new_hospital_session_path %>
+<% end %>
 <%= form_with(model: @medical_department , local: true ) do |form| %>
   <% if @medical_department.errors.any? %>
     <div id="error_explanation">

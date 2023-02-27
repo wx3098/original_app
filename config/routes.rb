@@ -1,22 +1,9 @@
 Rails.application.routes.draw do
+  root to: 'homes#index', as: 'home'
   get '/tops', to: 'tops#index'
   # devise_for :admins
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  # devise_scope :user do
-  #   root "users/sessions#new"
-  # end
-
-
-  # namespace :admins do
-  #   resources :mains
-  # end
-
-  # devise_for :admins, controllers: {
-  #   session: 'admins/sessions',
-  #   password: 'admins/passwords',
-  #   registrations: 'admins/registrations'
-  # }
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -25,18 +12,29 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
+  end
+
+ 
+  devise_scope :hospital do
+    post '/guest_sign_in', to: 'hospitals/sessions#new_guest'
+  end
+
+
   # devise_scope :user do
   #   get '/users/auth/line/callback', to: 'users/omniauth_callbacks#line'
   # end
   
-  root to: 'tops#index'
+  # root to: 'tops#index'
 
   devise_for :hospitals, controllers: {
     sessions: 'hospitals/sessions',
     password: 'hospitals/password',
     registrations: 'hospitals/registrations'
   }
-  resource :hospital
+  resources :hospitals
   devise_scope :hospital do
     get '/hospitals/sign_out' => 'hospitals/sessions#destroy'
   end

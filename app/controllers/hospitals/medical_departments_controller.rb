@@ -1,5 +1,6 @@
 class Hospitals::MedicalDepartmentsController < ApplicationController
   before_action :authenticate_hospital!
+  # before_action :set_medical_department, only: [:show, :edit, :update, :destroy]
 
   def index
     @medical_departments = current_hospital.medical_departments
@@ -8,6 +9,7 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
   def new
     @medical_department = MedicalDepartment.new
     @hospital = current_hospital
+    # @medical_department = current_hospital.medical_departments.build
   end
 
   def create
@@ -21,10 +23,10 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
   end
 
   def show
-    @medical_department = MedicalDepartment.find(params[:id])
-    @hospital = @medical_department.hospital
-    @departments = @hospital.medical_departments
-    # @medical_department = current_user.medical_departments
+      @medical_department = MedicalDepartment.find_by(id: params[:id])
+      @hospital = @medical_department.hospital
+      @departments = @hospital.medical_departments
+      # @medical_department = current_user.medical_departments
   end
 
   def edit
@@ -54,5 +56,14 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
    
     params.require(:medical_department).permit(:name, :hospital_id).merge(wait_time: params[:wait_time].to_i)
   end
+
+
+  # def set_medical_department
+  #   @medical_department = MedicalDepartment.find_by(id: params[:id])
+  #   if @medical_department.nil?
+  #     flash[:alert] = "該当する診療科が存在しません。"
+  #     redirect_to home_path
+  #   end
+  # end
 end
 

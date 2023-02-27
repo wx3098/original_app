@@ -1,8 +1,19 @@
-<h1>診療科情報</h1>
-<p>診療科名: <%= @medical_department.name %></p>
+<% if hospital_signed_in? %>
+<%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
+<% else %>
+<%= link_to "ログイン", new_hospital_session_path %>
+<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1>診療科情報</h1>
+      <h3><p>診療科名: <%= @medical_department.name %></p></h3>
 
-<h2>受付フォーム</h2>
-  <%= link_to '受付', medical_appointments_path(medical_department_id: @medical_department.id), method: :post %> 
+      <% unless @medical_department.medical_appointments_users.include?(current_user) %>
+        <%= link_to '受付', medical_appointments_path(medical_department_id: @medical_department.id), method: :post %> 
+      <% end %>
 
-<%= link_to '戻る', medical_departments_path %>
-
+      <%= link_to '戻る', medical_departments_path %>
+    </div>
+   </div>
+ </div>
