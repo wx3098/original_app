@@ -1,9 +1,4 @@
-<% if hospital_signed_in? %>
-<%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
-<% else %>
-<%= link_to "ログイン", new_hospital_session_path %>
-<% end %>
-
+<div class="col-md-12 text-center">
 <h1>病院情報</h1>
 <p>待ち時間: <%= @hospital.name %></p>
 
@@ -16,4 +11,5 @@
 <% end %>
 </div>
 
-<%= link_to '戻る', medical_departments_path %>
+<%= link_to '戻る', tops_path %>
+</div>
