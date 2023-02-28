@@ -3,7 +3,15 @@
     <% end %>
 
  <div class="text-center mt-5">
-<P><%= current_user.name %>様のページ</p>
+<%
+=begin%>
+ <P><%= current_user.name %>様のページ</p> 
+<%
+=end%>
+<%= month_calendar do |date| %>
+  <%= date %>
+<% end %>
+
 <p><%= link_to '受付完了ページへ', mains_path %></p>
 <h1>病院検索</h1>
 <table class="table table-striped">

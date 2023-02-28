@@ -8,8 +8,9 @@ class ApplicationController < ActionController::Base
         when Hospital
           hospital = resource
           medical_department = hospital.medical_departments.first
-          hospitals_medical_department_path(medical_department)
-      end
+          new_hospitals_medical_department_path
+          # hospitals_medical_department_path(medical_department)
+        end
     end
 
     def after_sign_out_path_for(resource)
@@ -20,6 +21,8 @@ class ApplicationController < ActionController::Base
           new_hospital_session_path
         end
     end
+    
+    
 
     def after_sign_out_path_for(resource_or_scope)
       home_path

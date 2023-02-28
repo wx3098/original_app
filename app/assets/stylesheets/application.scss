@@ -12,10 +12,12 @@
  *
  *= require_tree .
  *= require_self
+ *= require simple_calendar
  */
  @import "bootstrap";
  @import "homes";
  @import "medical_departments";
+
 
 
 body{
