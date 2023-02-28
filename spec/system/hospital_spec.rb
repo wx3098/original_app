@@ -21,32 +21,46 @@ RSpec.describe '病院ログイン', type: :system do
       visit  new_hospital_session_path
       fill_in 'hospital[email]', with: hospital1.email
       fill_in 'hospital[password]', with: hospital1.password
-      sleep(3)
       click_on 'ログイン'   
       visit new_hospitals_medical_department_path
-      sleep(3)
       expect(page).to have_content '診療科'
     end
   end
+
+
+
   
-
-
-  context '病院からログインし' do
-    it '受付ボタンを押す' do
-      click_on '病院用ログイン'
-      visit  new_hospital_session_path
-      fill_in 'hospital[email]', with: 'furu@ya.com'
-      fill_in 'hospital[password]', with: 'furu@ya.com'
-      click_on 'ログイン'
-      visit medical_department_path
-      expect(page).to have_content '呼び出しボタン'
-      click_link '戻る'
-      visit hospitals_medical_department_path
-      click_link '呼び出しボタン'
-      except(page).to have_content '診療科情報'
+    context '病院からログインし' do
+      it '診療科と時間を設定をする' do
+        visit  new_hospital_session_path
+        fill_in 'hospital[email]', with: hospital1.email
+        fill_in 'hospital[password]', with: hospital1.password
+        click_on 'ログイン'
+        visit new_hospitals_medical_department_path
+        fill_in 'medical_department[name]', with:'小児科'
+        select '5分', from: 'wait_time'
+        click_on '登録する'
+        expect(page).to have_content '診療科一覧'
+      end
+    end
+    context '病院からログインし' do
+      it '時間に関係なく呼び出しが出来る' do
+        visit  new_hospital_session_path
+        fill_in 'hospital[email]', with: hospital1.email
+        fill_in 'hospital[password]', with: hospital1.password
+        click_on 'ログイン'
+        visit new_hospitals_medical_department_path
+        fill_in 'medical_department[name]', with:'小児科'
+        select '5分', from: 'wait_time'
+        click_on '登録する'
+        visit medical_departments_path
+        click_link '呼び出しボタン'
+        expect(page).to have_content '診療科情報'
+      end
     end
   end
-end
+
+
 
 
 
