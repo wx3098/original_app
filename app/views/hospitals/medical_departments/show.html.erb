@@ -1,35 +1,35 @@
 <div class="col-md-12 text-center">
-<h1>診療科情報</h1>
-<p>診療科名: <%= @medical_department.name %></p>
+  <h1>診療科情報</h1>
+  <p>診療科名: <%= @medical_department.name %></p>
 
-<% @medical_department.medical_appointments_users.each do |user| %>
- <div><%= user.name %></div>
-<% end %>
-
-<audio id="call_audio">
-  <source src="/../packs/audio/call.mp3" type="audio/mp3">
-</audio>
-
-<h2>呼び出しボタン</h2>
-
- <% if @medical_department.medical_appointments.any? %>
-  <%= button_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments.first), method: :delete, id: 'call-btn' %>  
-<% else %>
-  <p>現在、呼び出し可能な患者はいません。</p>
-<% end %>
-
-
-<div id="wait-info">
-  <% appointments = @medical_department.medical_appointments.order(created_at: :asc) %>
-  <% wait_people = appointments.index { |appointment| appointment.user_id == current_user.id } %>
-  <% if wait_people %>
-    <% wait_time = wait_people * @medical_department.wait_time %>
-    <% message = "待ち人数：" + wait_people.to_s + "人、予想待ち時間：" + wait_time.to_s + "分" %>
-    <%= message %>
-  <% else %>
-    <p>現在診察可能です。</p>
+  <% @medical_department.medical_appointments_users.each do |user| %>
+    <div><%= user.name %></div>
   <% end %>
-</div>
-<%= javascript_include_tag 'application', 'medical_appointments' %>
-<%= link_to '戻る', medical_departments_path %>
+
+  <audio id="call_audio">
+    <source src="/../packs/audio/call.mp3" type="audio/mp3">
+  </audio>
+
+  <h2>呼び出しボタン</h2>
+
+  <% if @medical_department.medical_appointments.any? %>
+    <%= button_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments.first), method: :delete, id: 'call-btn' %>  
+  <% else %>
+    <p>現在、呼び出し可能な患者はいません。</p>
+  <% end %>
+
+
+  <div id="wait-info">
+    <% appointments = @medical_department.medical_appointments.order(created_at: :asc) %>
+    <% wait_people = @medical_department.medical_appointments_users.length%>
+    <% if wait_people  > 0 %>
+      <% wait_time = wait_people * @medical_department.wait_time %>
+      <% message = "待ち人数：" + wait_people.to_s + "人、予想待ち時間：" + wait_time.to_s + "分" %>
+      <%= message %>
+    <% else %>
+      <p>現在診察可能です。</p>
+    <% end %>
+  </div>
+  <%= javascript_include_tag 'application', 'medical_appointments' %>
+  <%= link_to '戻る', medical_departments_path %>
 </div>

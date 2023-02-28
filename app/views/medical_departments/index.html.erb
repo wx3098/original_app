@@ -25,9 +25,13 @@
   <tr>
     <td><%= medical_department.wait_time %></td>
     <td><%= medical_department.name %></td>
-    
-    <td><%= link_to '呼び出しボタン', hospitals_medical_department_path(medical_department.id) %></td>
-    <td><%= link_to '編集を確認する', medical_department_path(medical_department.id) %></td>
+   
+    <td>
+     <% if medical_department.medical_appointments_users.length > 0 %>
+    <%= link_to '呼び出しボタン', hospitals_medical_department_path(medical_department.id) %>
+    <% end %>
+    </td>
+    <td><%= link_to '編集する', edit_hospitals_medical_department_path(medical_department.id) %></td>
     <td><%= link_to '削除する', hospitals_medical_department_path(medical_department.id), method: :delete, data: { confirm: '削除しても良いですか？' } %></td> 
   
   </tr>

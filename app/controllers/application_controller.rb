@@ -8,8 +8,7 @@ class ApplicationController < ActionController::Base
         when Hospital
           hospital = resource
           medical_department = hospital.medical_departments.first
-          new_hospitals_medical_department_path
-          # hospitals_medical_department_path(medical_department)
+          medical_departments_path
         end
     end
 

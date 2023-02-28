@@ -35,6 +35,7 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
 
   def update
     @medical_department = MedicalDepartment.find(params[:id]) 
+    binding.irb
     if @medical_department.update(medical_department_params)
         redirect_to medical_departments_path, notice: "編集しました"
     else
@@ -54,7 +55,7 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
 
   def medical_department_params
    
-    params.require(:medical_department).permit(:name, :hospital_id).merge(wait_time: params[:wait_time].to_i)
+    params.require(:medical_department).permit(:wait_time, :name, :hospital_id)
   end
 
 
