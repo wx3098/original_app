@@ -12,8 +12,9 @@ class Hospitals::SessionsController < Devise::SessionsController
       md.name = "ゲスト"
       md.wait_time = 10
     end
+    redirect_to medical_departments_path
     # medical_department_id = hospital.medical_departments.ids.
-    redirect_to hospitals_medical_department_path(hospital.medical_departments.first.id), notice: '病院用のゲストユーザーとしてログインしました。'
+    # redirect_to hospitals_medical_department_path(hospital.medical_departments.first.id), notice: '病院用のゲストユーザーとしてログインしました。'
   end
 
 

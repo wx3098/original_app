@@ -35,7 +35,7 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
 
   def update
     @medical_department = MedicalDepartment.find(params[:id]) 
-    binding.irb
+  
     if @medical_department.update(medical_department_params)
         redirect_to medical_departments_path, notice: "編集しました"
     else
