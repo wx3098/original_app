@@ -32,7 +32,13 @@
 <%
 =end%>
 
-    <% wait_people = appoints_at.select{|appoint| appoint < my_appoint_at}.count %> 
+    <%
+=begin%>
+ <% wait_people = appoints_at.select{|appoint| appoint < my_appoint_at}.count %>  
+<%
+=end%>
+<% wait_people = appoints_at.reject{|appoint| appoint == my_appoint_at || appoint > my_appoint_at}.count %>
+
     <% wait_time = wait_people * department.wait_time %>
     <td><%= wait_time %>分</td> 
     <td><%= "待ち人数：#{wait_people}人" %></td> 

@@ -1,3 +1,4 @@
+<div class="col-md-12 text-center">
 <%= form_with(model: @medical_department , url: {controller: 'hospitals/medical_departments', action: 'update' }, local: true ) do |form| %>
   <% if @medical_department.errors.any? %>
     <div id="error_explanation">
@@ -23,3 +24,4 @@
 <% end %>
 
 <%= link_to '戻る', medical_departments_path %>
+</div>

@@ -22,11 +22,18 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
     end
   end
 
+  # def show
+  #     @medical_department = MedicalDepartment.find_by(id: params[:id])
+  #     @hospital = @medical_department.hospital
+  #     @departments = @hospital.medical_departments
+  #     # @medical_department = current_user.medical_departments
+  # end
+
   def show
-      @medical_department = MedicalDepartment.find_by(id: params[:id])
-      @hospital = @medical_department.hospital
-      @departments = @hospital.medical_departments
-      # @medical_department = current_user.medical_departments
+    @medical_department = MedicalDepartment.find_by(id: params[:id])
+    @hospital = @medical_department.hospital
+    @departments = @hospital.medical_departments
+    @first_medical_appointment = @medical_department.medical_appointments.order(created_at: :asc).first
   end
 
   def edit
