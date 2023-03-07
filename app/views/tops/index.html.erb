@@ -1,33 +1,44 @@
 
  <div class="text-center mt-5">
-<%
-=begin%>
- <P><%= current_user.name %>様のページ</p> 
-<%
-=end%>
-<%= month_calendar do |date| %>
-  <%= date %>
+<% if current_user %>
+  <P><%= current_user.name %>様のページ</p>
 <% end %>
 
 <p><%= link_to '受付完了ページへ', mains_path %></p>
 <h1>病院検索</h1>
-<table class="table table-striped">
-<tr>
-<th>病院名</th>
-</tr>
-  <%= form_with(url: tops_path, local: true,   scope: :hospital, method: :get) do |f| %>
+  <%= form_with(url: tops_path, local: true, scope: :hospital, method: :get) do |f| %>
     <div class="title_name">
       <%= f.label "病院名" %>
       <%= f.text_field :name, class:"rform-control", placeholder:'病院名を入れて下さい' %>
-
     </div><br>
     <%= f.submit "検索" %>
   <% end %>
 
-  <% @hospitals.each do |hospital|%>
-    <td><%= link_to hospital.name, hospital_path(hospital) %></td>
+<% if @hospitals.present? %>
+  <table class="table table-striped">
+    <tr>
+     <th>病院名</th>
+     <% if current_user %>
+       <th>お気に入り</th>
+     <% end %>
+    </tr>
+    <% @hospitals.each do |hospital|%>
+    <tr>
+     <td><%= link_to hospital.name, hospital_path(hospital) %></td>
+
+    <% if current_user %>
+    <td>
+    <% if current_user.favorite_hospital_ids.include?(hospital.id) %>
+      <%= link_to 'お気に入り解除', favorite_path(current_user.favorites.find_by(hospital_id: hospital.id)), method: :delete %>
+    <% else %>
+      <%= link_to 'お気に入り', favorites_path(hospital_id: hospital.id), method: :post %>  
+    <% end %>
+    </td>
+  <% end %>
+   </tr>
   <% end %>
   </table>
+<% end %>
 </div>
 
 
