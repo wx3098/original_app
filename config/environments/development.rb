@@ -5,6 +5,9 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   # config.hosts << "19a4-2400-2652-8520-c900-15be-8ece-1d7c-4178.jp.ngrok.io"
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener_web
+
   config.hosts.clear
 
 

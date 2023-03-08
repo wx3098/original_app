@@ -64,14 +64,5 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
    
     params.require(:medical_department).permit(:wait_time, :name, :hospital_id)
   end
-
-
-  # def set_medical_department
-  #   @medical_department = MedicalDepartment.find_by(id: params[:id])
-  #   if @medical_department.nil?
-  #     flash[:alert] = "該当する診療科が存在しません。"
-  #     redirect_to home_path
-  #   end
-  # end
 end
 
