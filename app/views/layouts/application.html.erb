@@ -21,38 +21,21 @@
     <div class="col-md-12 text-center">
     <% if user_signed_in? || hospital_signed_in? %>
       <% if user_signed_in? %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <%= link_to 'ユーザー用ログアウト', destroy_user_session_path, method: :delete %>
       <% end %>
       <% if hospital_signed_in? %>
-        <%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
+        <%= link_to '病院用ログアウト', destroy_hospital_session_path, method: :delete %>
       <% end %>
     <% else %>
      <%= link_to "ユーザー新規登録画面", new_user_registration_path %>
 
     <%= link_to "ユーザーログイン", new_user_session_path%>
 
-    <%
-=begin%>
- <%= link_to "ユーザーゲストログイン", new_user_session_path %> 
-<%
-=end%>
-
-    <%
-=begin%>
- <%= link_to "管理者用ゲストログイン", new_user_session_path %> 
-<%
-=end%>
-
     <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
     
 
     <%= link_to "病院様用ログイン", new_hospital_session_path %>
 
-    <%
-=begin%>
- <%= link_to "病院様用ゲストログイン", new_hospital_session_path %> 
-<%
-=end%>
     <% end %>
     </div>
   </header> 
