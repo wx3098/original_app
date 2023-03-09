@@ -15,7 +15,7 @@ class MedicalAppointmentsController < ApplicationController
     MedicalAppointmentMailer.send_notification(@appointment).deliver
     redirect_to hospitals_medical_department_path(@appointment.medical_department)
     else
-      redirect_to hospitals_medical_department_path(@appointment.medical_department)
+      redirect_to medical_departments_path
   end
 end
   
