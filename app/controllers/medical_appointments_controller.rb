@@ -15,9 +15,8 @@ class MedicalAppointmentsController < ApplicationController
     @appointment.destroy
     MedicalAppointmentMailer.send_notification(@appointment).deliver
     flash[:notice] = '呼び出しました'
-    redirect_to hospitals_medical_department_path(@appointment.medical_department)
+    redirect_to medical_departments_path
     else
-      flash[:alert] = '呼び出す人が居ません'
       redirect_to medical_departments_path
   end
 end
