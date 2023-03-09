@@ -4,12 +4,12 @@
   <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
   <div class="field">
     <%= f.label :メール %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'test@dive.com' %>
   </div>
 
   <div class="field">
     <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: 'password' %>
   </div>
 
   <% if devise_mapping.rememberable? %>
