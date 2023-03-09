@@ -23,27 +23,30 @@
       <% if user_signed_in? %>
         <%= link_to 'ユーザー用ログアウト', destroy_user_session_path, method: :delete %>
       <% end %>
-      <% if hospital_signed_in? %>
-        <%= link_to '病院用ログアウト', destroy_hospital_session_path, method: :delete %>
-      <% end %>
-    <% else %>
-     <%= link_to "ユーザー新規登録画面", new_user_registration_path %>
-
-    <%= link_to "ユーザーログイン", new_user_session_path%>
-
-    <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
-    
-
-    <%= link_to "病院様用ログイン", new_hospital_session_path %>
-
+    <% if hospital_signed_in? %>
+      <%= link_to '病院用ログアウト', destroy_hospital_session_path, method: :delete %>
     <% end %>
+    <% else %>
+      <%= link_to "ユーザー新規登録画面", new_user_registration_path %>
+
+      <%= link_to "ユーザーログイン", new_user_session_path%>
+
+      <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
+      
+
+      <%= link_to "病院様用ログイン", new_hospital_session_path %>
     </div>
+    <% end %>
   </header> 
 
 
 
 
   <body>
+  <div class="row justify-content-center">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
   <div class="position-relative">
     <%= yield %>
   </div>
