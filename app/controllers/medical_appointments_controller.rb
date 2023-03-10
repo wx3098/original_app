@@ -11,15 +11,13 @@ class MedicalAppointmentsController < ApplicationController
 
   def destroy
     @appointment = MedicalAppointment.find_by(id: params[:id])
-    if @appointment.present?
-    @appointment.destroy
-    MedicalAppointmentMailer.send_notification(@appointment).deliver
-    flash[:notice] = '呼び出しました'
-    redirect_to medical_departments_path
-    else
+    unless @appointment.nil?
+      @appointment.destroy
+      MedicalAppointmentMailer.send_notification(@appointment).deliver
+      flash[:notice] = '呼び出しました'
+    end
       redirect_to medical_departments_path
   end
-end
   
   # def destroy
   #   @appointment = MedicalAppointment.find(params[:id])

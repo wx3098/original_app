@@ -13,25 +13,14 @@
 
 
  <div>
-
     <%= select_tag :wait_time, options_for_select([["5分", 5],["10分", 10],["15分", 15]]) %>
 
-    <%
-=begin%>
- <%= form.number_field :wait_time %> 
-<%
-=end%>
   </div>
   <div>
     <%= form.label :"診療科" %>
     <%= form.text_field :name, placeholder: '小児科'%>
   </div> 
 
- <%
-=begin%>
- <%= form.select :wait_time, [["5", 5],[]]%>  
-<%
-=end%>
 
   <%= form.submit %>
 <% end %>

@@ -44,3 +44,15 @@ footer {
     margin-top: 20px;
     margin-bottom: 10px;
   }
+
+  #error_explanation ul {
+    list-style-type: none;
+  }
+
+  #error_explanation {
+    color: red;
+  }
+
+  .alert{
+    color: red;
+  }

@@ -1,4 +1,5 @@
 <div class="col-md-12 text-center">
+<h3>診療科登録</h3>
 <%= form_with(model: @medical_department, url: hospitals_medical_departments_path, local: true ) do |form| %>
   <% if @medical_department.errors.any? %>
     <div id="error_explanation">
@@ -12,6 +13,7 @@
   <% end %>
 
   <div>
+    <%= form.label :"待ち時間" %>
     <%= select_tag 'medical_department[wait_time]', options_for_select([["5分", 5],["10分", 10],["15分", 15]]) %>
   </div>
   <div>

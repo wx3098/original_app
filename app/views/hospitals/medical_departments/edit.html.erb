@@ -1,4 +1,5 @@
 <div class="col-md-12 text-center">
+<h3>診療科編集</h3>
 <%= form_with(model: @medical_department , url: {controller: 'hospitals/medical_departments', action: 'update' }, local: true ) do |form| %>
   <% if @medical_department.errors.any? %>
     <div id="error_explanation">

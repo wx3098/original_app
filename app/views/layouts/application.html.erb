@@ -22,6 +22,10 @@
     <% if user_signed_in? || hospital_signed_in? %>
       <% if user_signed_in? %>
         <%= link_to 'ユーザー用ログアウト', destroy_user_session_path, method: :delete %>
+
+        <%= link_to "受付完了ページへ", mains_path %>
+
+        <%= link_to "トップページへ", tops_path %>
       <% end %>
     <% if hospital_signed_in? %>
       <%= link_to '病院用ログアウト', destroy_hospital_session_path, method: :delete %>
@@ -32,9 +36,9 @@
       <%= link_to "ユーザーログイン", new_user_session_path%>
 
       <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
-      
 
       <%= link_to "病院様用ログイン", new_hospital_session_path %>
+
     </div>
     <% end %>
   </header> 

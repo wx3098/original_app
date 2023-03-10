@@ -4,7 +4,7 @@
   <P><%= current_user.name %>様のページ</p>
 <% end %>
 
-<p><%= link_to '受付完了ページへ', mains_path %></p>
+
 <h1>病院検索</h1>
   <%= form_with(url: tops_path, local: true, scope: :hospital, method: :get) do |f| %>
     <div class="title_name">
