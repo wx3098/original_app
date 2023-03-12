@@ -46,7 +46,7 @@ gem 'line-bot-api'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
-gem "simple_calendar", "~> 2.0"
+gem 'sass-rails', '>= 6'
 
 
 group :development, :test do
