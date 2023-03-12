@@ -7,11 +7,6 @@
       <th scope="col">お名前</th>
       <th scope="col">病院名</th>
       <th scope="col">診療科名</th>
-      <%
-=begin%>
- <th scope="col">受付人数</th> 
-<%
-=end%>
       <th scope="col">待ち時間</th>
       <th scope="col">待ち人数</th>
     </tr>
@@ -22,22 +17,13 @@
 <tr>
     <td><%= current_user.name %>様</td>
     <td><%= appointment.medical_department.hospital.name %></td>
-    <td><%= department.name %></td>
-    <%
-=begin%>
- <td><% MedicalAppointment.where(medical_department_id: department.id).count%></td> 
-<%
-=end%>
-    <% my_appoint_at = appointment.created_at%>
-  
-    <% appoints_at = department.medical_appointments.pluck(:created_at) %>
-   
-    <% wait_people = appoints_at.reject{|appoint| appoint == my_appoint_at || appoint > my_appoint_at}.count %>
-
-    <% wait_time = wait_people * department.wait_time %>
-    <td><%= wait_time %>分</td> 
-    <td><%= "待ち人数：#{wait_people}人" %></td> 
-
+    <td><%= appointment.medical_department.name %></td>
+    
+    <% department_appointments = appointment.medical_department.medical_appointments %>
+    <% wait_people = department_appointments.count { |a| a.created_at <= appointment.created_at } %>
+    <% wait_time = wait_people * appointment.medical_department.wait_time %>
+    <td><%= wait_people > 0 ? "#{wait_time}分" : "0分" %></td>
+    <td><%= "待ち人数：#{wait_people}人" %></td>
 </tr>
 <% end %>
 </table>

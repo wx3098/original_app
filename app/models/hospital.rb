@@ -7,7 +7,7 @@ class Hospital < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
         #  scope :name_search, -> (name) { where('name LIKE ?', "%#{params[:hospital][:name]}%")}
 
   # def self.guest

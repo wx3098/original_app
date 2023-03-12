@@ -47,6 +47,7 @@ gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 gem 'sass-rails', '>= 6'
+gem 'faker'
 
 
 group :development, :test do

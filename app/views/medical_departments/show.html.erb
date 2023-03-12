@@ -2,7 +2,15 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <h1>診療科情報</h1>
-      <h3><p>診療科名: <%= @medical_department.name %></p></h3>
+
+      <h5><p>病院名: <%= @hospital.name %></p></h5>
+      <h5><p>診療科名: <%= @medical_department.name %></p></h5>
+      <% appointments = @medical_department.medical_appointments %>
+      <% wait_people = appointments.reject { |a| a.created_at > Time.current }.count %>
+      <% wait_time = wait_people * @medical_department.wait_time %>
+
+      <p>待ち時間: <%= wait_people > 0 ? "#{wait_time}分" : "0分" %></p>
+      <p>待ち人数: <%= wait_people %>人</p>
 
       <% unless @medical_department.medical_appointments_users.include?(current_user) %>
         <%= link_to '受付', medical_appointments_path(medical_department_id: @medical_department.id), method: :post %> 

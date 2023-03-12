@@ -33,6 +33,10 @@
         <%= link_to "トップページへ", tops_path %>
       <% end %>
     <% if hospital_signed_in? %>
+      <%= link_to '新規診療科作成', new_hospitals_medical_department_path %>
+
+      <%= link_to '病院情報', medical_departments_path %>
+
       <%= link_to '病院用ログアウト', destroy_hospital_session_path, method: :delete %>
     <% end %>
     <% else %>
