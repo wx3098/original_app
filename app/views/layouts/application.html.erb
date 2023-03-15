@@ -44,9 +44,11 @@
         <% end %>
       <% end %>
     <% if hospital_signed_in? %>
-      <li class="nav-item mx-2">
-        <%= link_to '新規診療科作成', new_hospitals_medical_department_path %>
+      <% if !current_page?(new_hospitals_medical_department_path) %>
+        <li class="nav-item mx-2">
+          <%= link_to '新規診療科作成', new_hospitals_medical_department_path %>
       </li>
+      <% end %>
     <% if !current_page?(medical_departments_path) %>
       <li class="nav-item mx-2">
         <%= link_to '病院情報', medical_departments_path %>
