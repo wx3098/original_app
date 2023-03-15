@@ -24,11 +24,13 @@ RSpec.describe MedicalDepartment, type: :model do
 
     context '別の病院で同じ診療科名を使用する場合' do
       it 'バリデーションにひっかからない' do
-        hospital1 = Hospital.create(name: '病院A')
-        hospital2 = Hospital.create(name: '病院B')
-        department1 = MedicalDepartment.create(name: '皮膚科', hospital: hospital1)
-        department2 = MedicalDepartment.create(name: '皮膚科', hospital: hospital2)
-        expect(department2.valid?).to eq(true)
+        hospital1 = Hospital.create(name: '病院A', email: 'hospital1@example.com', password: 'password1')
+        hospital2 = Hospital.create(name: '病院B', email: 'hospital2@example.com', password: 'password2')
+        hospital1.save!
+        hospital2.save!
+        department1 = hospital1.medical_departments.create(name: '皮膚科')
+        department2 = hospital2.medical_departments.create(name: '皮膚科')
+        expect(department2).to be_valid
       end
     end
   end
