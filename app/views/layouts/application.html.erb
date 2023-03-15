@@ -32,37 +32,51 @@
           <li class="nav-item">
             <%= link_to 'ユーザー用ログアウト', destroy_user_session_path, method: :delete %>
           </li>
+        <% if !current_page?(mains_path) %>
           <li class="nav-item mx-2">
             <%= link_to "受付完了ページへ", mains_path %>
           </li>
+        <% end %>
+        <% if !current_page?(tops_path) %>
           <li class="nav-item mx-2">
             <%= link_to "トップページへ", tops_path %>
           </li>
+        <% end %>
       <% end %>
     <% if hospital_signed_in? %>
       <li class="nav-item mx-2">
         <%= link_to '新規診療科作成', new_hospitals_medical_department_path %>
       </li>
+    <% if !current_page?(medical_departments_path) %>
       <li class="nav-item mx-2">
         <%= link_to '病院情報', medical_departments_path %>
       </li>
+    <% end %>
       <li class="nav-item mx-2">
         <%= link_to '病院用ログアウト', destroy_hospital_session_path, method: :delete %>
       </li>
     <% end %>
     <% else %>
+    <% if !current_page?(new_user_registration_path) %>
       <li class="nav-item mx-2">
         <%= link_to "ユーザー新規登録画面", new_user_registration_path %>
       </li>
+    <% end %>
+    <% if !current_page?(new_user_session_path) %>
       <li class="nav-item mx-2">
         <%= link_to "ユーザーログイン", new_user_session_path%>
       </li>
+    <% end %>
+    <% if !current_page?(new_hospital_registration_path) %>
       <li class="nav-item mx-2">
         <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
       </li>
+    <% end %>
+    <% if !current_page?(new_hospital_session_path) %>
       <li class="nav-item mx-2">
         <%= link_to "病院様用ログイン", new_hospital_session_path %>
       </li>
+    <% end %>
     <% end %>
     </ul>
     </div>

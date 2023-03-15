@@ -31,7 +31,7 @@
     <% if current_user.favorite_hospital_ids.include?(hospital.id) %>
       <%= link_to 'お気に入り解除', favorite_path(current_user.favorites.find_by(hospital_id: hospital.id)), method: :delete %>
     <% else %>
-      <%= link_to 'お気に入り', favorites_path(hospital_id: hospital.id), method: :post %>  
+      <%= link_to 'お気に入り登録', favorites_path(hospital_id: hospital.id), method: :post %>  
     <% end %>
     </td>
   <% end %>

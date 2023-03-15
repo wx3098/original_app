@@ -4,4 +4,5 @@ class MedicalDepartment < ApplicationRecord
     belongs_to :hospital
    
     validates :name, presence: true
+    validates :name, uniqueness: { scope: :hospital_id }
 end

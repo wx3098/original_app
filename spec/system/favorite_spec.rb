@@ -20,7 +20,7 @@ let!(:secound_user){FactoryBot.create(:secound_user)}
       visit tops_path
       fill_in 'hospital[name]', with: hospital1.name
       click_on '検索'
-      click_on 'お気に入り'
+      click_on 'お気に入り登録'
       sleep(5)
       expect(page).to have_content 'お気に入り解除'
     end
