@@ -83,13 +83,13 @@ Hospital.create!(
 
 
 hospitals = Hospital.all
-hospitals = hospitals.map{|hospital|hospital.id}
+
 medicaldepartments = ["整形外科", "内科", "耳鼻科", "皮膚科", "歯科"]
 
-100.times{|h|
+10.times{|h|
   MedicalDepartment.create!(
-    wait_time: rand(5..60),
-    hospital_id: hospitals.sample,
+    wait_time: rand(5..20),
+    hospital_id: hospitals.id,
     name: medicaldepartments.sample
   )
 }
