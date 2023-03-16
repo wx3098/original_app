@@ -3,7 +3,7 @@ ja:
   activerecord:
     attributes:
       medical_department:
-        name: 病院名
+        name: 診療科名
     errors:
       messages:
         taken: はすでに存在します
