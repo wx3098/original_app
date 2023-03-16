@@ -46,53 +46,81 @@ user4 = User.create!(
   admin: true
 )
 
-Hospital.create!(
+hospital1 = Hospital.create!(
   name: "サンプル病院",
-  email: "sample@example.com",
+  email: "sample1@example.com",
   password: "password",
   password_confirmation: "password",
 )
 
-Hospital.create!(
+hospital2 = Hospital.create!(
   name: "サンプル病院1",
-  email: "sample1@example.com",
-  password: "password",
-  password_confirmation: "password"
-)
-
-Hospital.create!(
-  name: "サンプル病院2",
   email: "sample2@example.com",
   password: "password",
   password_confirmation: "password"
 )
 
-Hospital.create!(
-  name: "サンプル病院3",
+hospital3 = Hospital.create!(
+  name: "サンプル病院2",
   email: "sample3@example.com",
   password: "password",
   password_confirmation: "password"
 )
 
-Hospital.create!(
-  name: "サンプル病院4",
+hospital4 = Hospital.create!(
+  name: "サンプル病院3",
   email: "sample4@example.com",
   password: "password",
   password_confirmation: "password"
 )
 
+hospital5 = Hospital.create!(
+  name: "サンプル病院4",
+  email: "sample5@example.com",
+  password: "password",
+  password_confirmation: "password"
+)
 
-hospitals = Hospital.all
+medical_departments1 = ["整形外科", "内科", "耳鼻科", "皮膚科", "歯科"]
+medical_departments1.each do |name|
+  department = MedicalDepartment.create!(name: name)
+  hospital1.hospital_medical_departments.create!(medical_department: department)
+end
 
-medicaldepartments = ["整形外科", "内科", "耳鼻科", "皮膚科", "歯科"]
+medical_departments2 = ["呼吸器内科", "消化器内科", "小児科", "脳神経外科", "産婦人科"]
+medical_departments2.each do |name|
+  department = MedicalDepartment.create!(name: name)
+  hospital2.hospital_medical_departments.create!(medical_department: department)
+end
 
-10.times{|h|
-  MedicalDepartment.create!(
-    wait_time: rand(5..20),
-    hospital_id: hospitals.id,
-    name: medicaldepartments.sample
-  )
-}
+medical_departments3 = ["泌尿器科", "眼科", "心臓血管外科", "リハビリテーション科", "総合診療科"]
+medical_departments3.each do |name|
+  department = MedicalDepartment.create!(name: name)
+  hospital3.hospital_medical_departments.create!(medical_department: department)
+end
+
+medical_departments4 = ["外科", "放射線科", "麻酔科", "アレルギー科", "精神科"]
+medical_departments4.each do |name|
+  department = MedicalDepartment.create!(name: name)
+  hospital4.hospital_medical_departments.create!(medical_department: department)
+end
+
+medical_departments5 = ["乳腺外科", "人工透析", "眼科", "形成外科", "耳鼻咽喉科"]
+medical_departments5.each do |name|
+  department = MedicalDepartment.create!(name: name)
+  hospital5.hospital_medical_departments.create!(medical_department: department)
+end
+# hospitals = Hospital.all
+# hospitals = hospitals.map{|hospital|hospital.id}
+# medicaldepartments = ["整形外科", "内科", "耳鼻科", "皮膚科", "歯科"]
+
+# 10.times{|h|
+#   MedicalDepartment.create!(
+#     wait_time: rand(5..20),
+#     hospital_id: hospitals.id,
+#     name: medicaldepartments.sample
+#   )
+# }
 
 user_ids = User.pluck(:id)
 hospital_ids = Hospital.pluck(:id)
