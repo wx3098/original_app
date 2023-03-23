@@ -30,7 +30,7 @@ class MedicalAppointmentsController < ApplicationController
             text: "#{@appointment.user.name}様 #{@medical_department.hospital.name} #{@medical_department.name} お待たせしました。診察室へお入り下さい。"
           }
   
-          response = client.push_message(current_user.uid, message)
+          response = client.push_message(@user.uid, message)
         elsif current_user.provider == "email"
           MedicalAppointmentMailer.send_notification(@appointment).deliver_now
         end
