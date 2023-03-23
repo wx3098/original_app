@@ -14,14 +14,11 @@ class MedicalAppointmentsController < ApplicationController
     @appointment = MedicalAppointment.find_by(id: params[:id])
   
     unless @appointment.nil?
-      @user = @appointment.user
-      @medical_department = @appointment.medical_department
-      @hospital = @medical_department.hospital
-
-      @appointment.destroy
-  
       if user_signed_in?
         if current_user.provider == "line"
+          @user = @appointment.user
+          @medical_department = @appointment.medical_department
+          @hospital = @medical_department.hospital
          
           client = Line::Bot::Client.new do |config|
             config.channel_secret = ENV['LINE_CHANNEL_SECRET']
@@ -38,7 +35,8 @@ class MedicalAppointmentsController < ApplicationController
           MedicalAppointmentMailer.send_notification(@appointment).deliver_now
         end
       end
-  
+      
+      @appointment.destroy
       flash[:notice] = '呼び出しました'
     end
   
