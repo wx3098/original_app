@@ -14,7 +14,7 @@ class MedicalAppointmentsController < ApplicationController
     @appointment = MedicalAppointment.find_by(id: params[:id])
   
     unless @appointment.nil?
-      @user = appointment.user
+      @user = @appointment.user
       @medical_department = @appointment.medical_department
       @hospital = @medical_department.hospital
 
