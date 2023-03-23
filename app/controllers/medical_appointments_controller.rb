@@ -30,7 +30,7 @@ class MedicalAppointmentsController < ApplicationController
   
           message = {
             type: 'text',
-            text: "#{@user} #{@hospital} #{@medical_department} お待たせしました。診察室へお入り下さい。"
+            text: "#{@user&.name} #{@hospital} #{@medical_department} お待たせしました。診察室へお入り下さい。"
           }
   
           response = client.push_message(current_user.uid, message)
