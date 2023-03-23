@@ -41,6 +41,6 @@ class MedicalAppointmentsController < ApplicationController
     end
   
     redirect_to medical_departments_path
-  
+  end
 end
 
