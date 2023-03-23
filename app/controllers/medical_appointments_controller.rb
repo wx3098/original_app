@@ -15,13 +15,16 @@ class MedicalAppointmentsController < ApplicationController
     unless @appointment.nil?
       @appointment.destroy
       if user_signed_in? && current_user.provider == "line"
-        client = Line::Bot::client.new { |config|
-        config.channel_secret = ENV['LINE_CHANNEL_SECRET']
-        config.channel_token = ENV['LINE_CANNEL_TOKEN']
+        @user = @appointment.user
+        @medical_department = @appointment.medical_department
+        @hospital = @medical_department.hospital
+        client = Line::Bot::Client.new { |config|
+          config.channel_secret = ENV['LINE_CHANNEL_SECRET']
+          config.channel_token = ENV['LINE_CHANNEL_TOKEN']
       }
       message = {
         type: 'text',
-        text: "#{@appoint.user} #{@hospital.name} #{@appoint.medical_departments} お待たせしました。診察室へお入り下さい。"
+        text: "#{@user} #{@hospital.name} #{@appoint.medical_department.name} お待たせしました。診察室へお入り下さい。"
       } 
       response = client.push_message(current_user.uid, message)
     elsif user_signed_in? && current_user.provider == "email"
