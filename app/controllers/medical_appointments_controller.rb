@@ -1,5 +1,6 @@
 class MedicalAppointmentsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
+  require 'line/bot'
   
   def create
     @medical_appointment = MedicalAppointment.new(user_id: current_user.id, medical_department_id: params[:medical_department_id])   
@@ -13,17 +14,22 @@ class MedicalAppointmentsController < ApplicationController
     @appointment = MedicalAppointment.find_by(id: params[:id])
     unless @appointment.nil?
       @appointment.destroy
+      if user_signed_in? && current_user.provider == "line"
+        client = Line::Bot::client.new { |config|
+        config.channel_secret = ENV['LINE_CHANNEL_SECRET']
+        config.channel_token = ENV['LINE_CANNEL_TOKEN']
+      }
+      message = {
+        type: 'text',
+        text: "#{@appoint.user} #{@hospital.name} #{@appoint.medical_departments} お待たせしました。診察室へお入り下さい。"
+      } 
+      response = client.push_message(current_user.uid, message)
+    elsif user_signed_in? && current_user.provider == "email"
       MedicalAppointmentMailer.send_notification(@appointment).deliver
+    end
       flash[:notice] = '呼び出しました'
     end
       redirect_to medical_departments_path
   end
-  
-  # def destroy
-  #   @appointment = MedicalAppointment.find(params[:id])
-  #   @appointment.destroy
-  #   MedicalAppointmentMailer.send_notification(@appointment).deliver
-  #   redirect_to hospitals_medical_department_path(@appointment.medical_department)
-  # end
 end
 
