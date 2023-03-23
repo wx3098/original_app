@@ -32,7 +32,7 @@ class MedicalAppointmentsController < ApplicationController
   
           response = client.push_message(@user.uid, message)
         elsif current_user.email.present?
-          MedicalAppointmentMailer.send_notification(@appointment).deliver_now
+          MedicalAppointmentMailer.send_notification(@appointment).deliver
         end
       end
       
