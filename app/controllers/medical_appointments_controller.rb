@@ -80,7 +80,6 @@ class MedicalAppointmentsController < ApplicationController
   # end
    
 
-
   def destroy
     @appointment = MedicalAppointment.find_by(id: params[:id])
   
@@ -101,9 +100,9 @@ class MedicalAppointmentsController < ApplicationController
         }
   
         response = client.push_message(@user.uid, message)
-      else
-        MedicalAppointmentMailer.send_notification(@appointment).deliver_now
       end
+  
+      MedicalAppointmentMailer.send_notification(@appointment).deliver_now
   
       @appointment.destroy
       flash[:notice] = '呼び出しました'
@@ -111,6 +110,7 @@ class MedicalAppointmentsController < ApplicationController
   
     redirect_to medical_departments_path
   end
+  
   
 end
 
