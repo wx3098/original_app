@@ -42,6 +42,9 @@ class MedicalAppointmentsController < ApplicationController
   
   #   redirect_to medical_departments_path
   # end
+
+
+
   def destroy
     @appointment = MedicalAppointment.find_by(id: params[:id])
   
@@ -66,8 +69,6 @@ class MedicalAppointmentsController < ApplicationController
         else
           MedicalAppointmentMailer.send_notification(@appointment).deliver_now
         end
-      else
-        MedicalAppointmentMailer.send_notification(@appointment).deliver_now
       end
   
       @appointment.destroy
