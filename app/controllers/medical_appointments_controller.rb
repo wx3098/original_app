@@ -67,6 +67,7 @@ class MedicalAppointmentsController < ApplicationController
         else
           MedicalAppointmentMailer.send_notification(@appointment).deliver_now
         end
+      end
       
       @appointment.destroy
       flash[:notice] = '呼び出しました'
