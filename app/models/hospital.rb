@@ -1,11 +1,13 @@
 class Hospital < ApplicationRecord
   has_many :medical_departments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
         #  scope :name_search, -> (name) { where('name LIKE ?', "%#{params[:hospital][:name]}%")}
 
   # def self.guest

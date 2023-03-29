@@ -1,0 +1,11 @@
+# config/locales/ja.yml
+ja:
+  activerecord:
+    attributes:
+      medical_department:
+        name: 診療科名
+    errors:
+      messages:
+        taken: はすでに存在します
+  errors:
+    format: ! '%{attribute}%{message}'

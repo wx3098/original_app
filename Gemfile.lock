@@ -116,6 +116,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -147,6 +149,15 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     line-bot-api (1.27.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -304,8 +315,6 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    simple_calendar (2.4.3)
-      rails (>= 3.0)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -375,8 +384,10 @@ DEPENDENCIES
   devise-i18n-views
   dotenv-rails
   factory_bot_rails
+  faker
   jbuilder (~> 2.7)
   jquery-rails
+  letter_opener_web
   line-bot-api
   listen (~> 3.2)
   net-imap
@@ -395,7 +406,6 @@ DEPENDENCIES
   rexml
   rspec-rails
   sass-rails (>= 6)
-  simple_calendar (~> 2.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

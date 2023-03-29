@@ -22,11 +22,18 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
     end
   end
 
+  # def show
+  #     @medical_department = MedicalDepartment.find_by(id: params[:id])
+  #     @hospital = @medical_department.hospital
+  #     @departments = @hospital.medical_departments
+  #     # @medical_department = current_user.medical_departments
+  # end
+
   def show
-      @medical_department = MedicalDepartment.find_by(id: params[:id])
-      @hospital = @medical_department.hospital
-      @departments = @hospital.medical_departments
-      # @medical_department = current_user.medical_departments
+    @medical_department = MedicalDepartment.find_by(id: params[:id])
+    @hospital = @medical_department.hospital
+    @departments = @hospital.medical_departments
+    @first_medical_appointment = @medical_department.medical_appointments.order(created_at: :asc).first
   end
 
   def edit
@@ -57,14 +64,5 @@ class Hospitals::MedicalDepartmentsController < ApplicationController
    
     params.require(:medical_department).permit(:wait_time, :name, :hospital_id)
   end
-
-
-  # def set_medical_department
-  #   @medical_department = MedicalDepartment.find_by(id: params[:id])
-  #   if @medical_department.nil?
-  #     flash[:alert] = "該当する診療科が存在しません。"
-  #     redirect_to home_path
-  #   end
-  # end
 end
 

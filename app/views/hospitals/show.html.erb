@@ -1,8 +1,9 @@
-<div class="col-md-12 text-center">
+<div class="col-md-12 text-center" >
 <h1>病院情報</h1>
-<p>待ち時間: <%= @hospital.name %></p>
+<h4><%= @hospital.name %></h4>
 
-<h2>診療科</h2>
+<div style="margin-top: 25px;">
+<h5>診療科</h5>
 <div class="row">
 <% @hospital.medical_departments.each do |department| %>
   <div class="col-sm-4">
@@ -11,5 +12,5 @@
 <% end %>
 </div>
 
-<%= link_to '戻る', tops_path %>
+<%= link_to '戻る', tops_path, class: "btn btn-secondary btn-sm text-white" %>
 </div>

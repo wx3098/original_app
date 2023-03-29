@@ -46,7 +46,8 @@ gem 'line-bot-api'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
-gem "simple_calendar", "~> 2.0"
+gem 'sass-rails', '>= 6'
+gem 'faker'
 
 
 group :development, :test do
@@ -61,6 +62,7 @@ group :development, :test do
 end
 
 group :development do# Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'letter_opener_web'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

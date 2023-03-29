@@ -10,13 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
- *= require simple_calendar
  */
  @import "bootstrap";
  @import "homes";
  @import "medical_departments";
+ @import "hospitals";
 
 
 
@@ -36,6 +34,27 @@ footer {
   }
   .container {
   background: #d9fbff;
-  height: 900px;
+  height: auto;
   padding: 0;
   }
+
+  .row{
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  #error_explanation ul {
+    list-style-type: none;
+  }
+
+  #error_explanation {
+    color: red;
+  }
+
+  .alert{
+    color: red;
+  }
+
+ .bg-green {
+  background-color: #bbe2bc;
+ }

@@ -25,5 +25,12 @@ RSpec.describe Hospital, type: :model do
         expect(hospital).to be_valid
       end
     end
+    context '同じ病院名が存在する場合' do
+      it 'バリデーションにひっかる' do
+        hospital1 = Hospital.create(name: '病院名', email: 'test@example.com', password: 'password', password_confirmation: 'password')
+        hospital2 = Hospital.new(name: '病院名', email: 'test2@example.com', password: 'password', password_confirmation: 'password')
+        expect(hospital2).not_to be_valid
+      end
+    end
   end
 end

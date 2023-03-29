@@ -15,12 +15,12 @@ RSpec.describe 'ユーザー登録', type: :system do
     end
   context '登録している人の場合' do
     it 'ログイン画面にから入る' do
-     visit home_path
-       click_on 'ユーザーログイン'
+        visit home_path
+        click_on 'ユーザーログイン'
         fill_in 'user[email]', with: 'takha@hasi.com'
         fill_in 'user[password]', with: '987654'
         click_on 'ログイン'
-      visit tops_path
+        visit tops_path
     end
   end
   

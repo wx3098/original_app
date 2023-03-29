@@ -8,66 +8,98 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
 <div class="col-md-12 text-center">
-   <p style="font-size: 20px;">HOORN -hospital order numberinf notice-</p>
+
+<h1 style="font-size: 36px; font-weight: bold; margin-top: 0; margin-bottom: 0;">HOORN</h1><p style="font-size: 18px; margin-top: 0; margin-bottom: 0;">-hospital order numbering notice-</p>
 </div>
   </head>
 
  
   
  <header>
+ <nav class="navbar navbar-expand-md navbar-light bg-green">
     <% if current_user.try(:admin?) %>
-      <%= link_to '管理者画面', rails_admin_path%>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to '管理者画面', rails_admin_path%>
+        </li>
+      </ul>
     <% end %>
-    <div class="col-md-12 text-center">
-    <% if user_signed_in? || hospital_signed_in? %>
-      <% if user_signed_in? %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      <% end %>
-      <% if hospital_signed_in? %>
-        <%= link_to 'ログアウト', destroy_hospital_session_path, method: :delete %>
-      <% end %>
-    <% else %>
-     <%= link_to "ユーザー新規登録画面", new_user_registration_path %>
-
-    <%= link_to "ユーザーログイン", new_user_session_path%>
-
-    <%
-=begin%>
- <%= link_to "ユーザーゲストログイン", new_user_session_path %> 
-<%
-=end%>
-
-    <%
-=begin%>
- <%= link_to "管理者用ゲストログイン", new_user_session_path %> 
-<%
-=end%>
-
-    <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
+  
     
-
-    <%= link_to "病院様用ログイン", new_hospital_session_path %>
-
-    <%
-=begin%>
- <%= link_to "病院様用ゲストログイン", new_hospital_session_path %> 
-<%
-=end%>
+      <ul class="navbar-nav mx-auto">
+        <% if user_signed_in? || hospital_signed_in? %>
+          <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'ユーザー用ログアウト', destroy_user_session_path, method: :delete %>
+          </li>
+        <% if !current_page?(mains_path) %>
+          <li class="nav-item mx-2">
+            <%= link_to "受付完了ページへ", mains_path %>
+          </li>
+        <% end %>
+        <% if !current_page?(tops_path) %>
+          <li class="nav-item mx-2">
+            <%= link_to "トップページへ", tops_path %>
+          </li>
+        <% end %>
+      <% end %>
+    <% if hospital_signed_in? %>
+      <% if !current_page?(new_hospitals_medical_department_path) %>
+        <li class="nav-item mx-2">
+          <%= link_to '新規診療科作成', new_hospitals_medical_department_path %>
+      </li>
+      <% end %>
+    <% if !current_page?(medical_departments_path) %>
+      <li class="nav-item mx-2">
+        <%= link_to '病院情報', medical_departments_path %>
+      </li>
     <% end %>
+      <li class="nav-item mx-2">
+        <%= link_to '病院用ログアウト', destroy_hospital_session_path, method: :delete %>
+      </li>
+    <% end %>
+    <% else %>
+    <% if !current_page?(new_user_registration_path) %>
+      <li class="nav-item mx-2">
+        <%= link_to "ユーザー新規登録画面", new_user_registration_path %>
+      </li>
+    <% end %>
+    <% if !current_page?(new_user_session_path) %>
+      <li class="nav-item mx-2">
+        <%= link_to "ユーザーログイン", new_user_session_path%>
+      </li>
+    <% end %>
+    <% if !current_page?(new_hospital_registration_path) %>
+      <li class="nav-item mx-2">
+        <%= link_to "病院様用新規登録画面", new_hospital_registration_path %>
+      </li>
+    <% end %>
+    <% if !current_page?(new_hospital_session_path) %>
+      <li class="nav-item mx-2">
+        <%= link_to "病院様用ログイン", new_hospital_session_path %>
+      </li>
+    <% end %>
+    <% end %>
+    </ul>
     </div>
+  </nav>
   </header> 
 
 
 
 
   <body>
+  <div class="row justify-content-center">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </div>
   <div class="position-relative">
     <%= yield %>
   </div>
   <footer class="posision-absolute">
-  <div class="text-center p-3 mt-2 text-light">
+    <div class="text-center p-3 mt-2 text-light">
         <P>HOORN -hospital order numbering notice-</p>
-      </div>
+    </div>
   </footer>
   </body>
 </html>

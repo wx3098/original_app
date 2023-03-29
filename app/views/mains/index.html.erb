@@ -1,10 +1,12 @@
-
+<div class="col-md-12 text-center" style="margin: 0;">
+  <h3>受付完了</h3>
+</div>
 <div class="table-responsive">
   <table class="table table-striped">
     <tr>
       <th scope="col">お名前</th>
+      <th scope="col">病院名</th>
       <th scope="col">診療科名</th>
-      <th scope="col">受付人数</th>
       <th scope="col">待ち時間</th>
       <th scope="col">待ち人数</th>
     </tr>
@@ -14,31 +16,18 @@
     <td><% department = appointment.medical_department %></td>
 <tr>
     <td><%= current_user.name %>様</td>
-    <td><%= department.name %></td>
-    <td><% MedicalAppointment.where(medical_department_id: department.id).count%></td>
-    <% my_appoint_at = appointment.created_at%>
- 
-  <%
-=begin%>
- <% my_appoint_at = current_user.medical_appointments.find_by(medical_department_id: department.id).created_at%>  
-<%
-=end%>
-  
-    <% appoints_at = department.medical_appointments.pluck(:created_at) %>
-   
-    <%
-=begin%>
- <% appoints_at = MedicalAppointment.where(medical_department_id: department.id).pluck(:created_at) %>  
-<%
-=end%>
-
-    <% wait_people = appoints_at.select{|appoint| appoint < my_appoint_at}.count %> 
-    <% wait_time = wait_people * department.wait_time %>
-    <td><%= wait_time %>分</td> 
-    <td><%= "待ち人数：#{wait_people}人" %></td> 
-
-<% end %>
+    <td><%= appointment.medical_department.hospital.name %></td>
+    <td><%= appointment.medical_department.name %></td>
+    
+    <% department_appointments = appointment.medical_department.medical_appointments %>
+    <% wait_people = department_appointments.count { |a| a.created_at <= appointment.created_at } %>
+    <% wait_time = wait_people * appointment.medical_department.wait_time %>
+    <td><%= wait_people > 0 ? "#{wait_time}分" : "0分" %></td>
+    <td><%= "待ち人数：#{wait_people}人" %></td>
 </tr>
+<% end %>
 </table>
-<%= link_to '戻る', tops_path %>
+<div class="text-center">
+<%= link_to '戻る', tops_path, class: "btn btn-secondary btn-sm text-white " %>
+</div>
 </diV>
