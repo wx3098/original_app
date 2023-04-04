@@ -18,16 +18,6 @@
     <p>現在、呼び出し可能な患者はいません。</p>
   <% end %>
   
-  <%
-=begin%>
- <% if @medical_department.medical_appointments.any? %>
-    <%= link_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments.first), method: :delete, id: 'call-btn' %>  
-  <% else %>
-    <p>現在、呼び出し可能な患者はいません。</p>
-  <% end %> 
-<%
-=end%>
-
 
   <div id="wait-info">
     <% appointments = @medical_department.medical_appointments.order(created_at: :asc) %>
