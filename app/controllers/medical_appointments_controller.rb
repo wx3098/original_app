@@ -3,11 +3,11 @@ class MedicalAppointmentsController < ApplicationController
   require 'line/bot'
   
   def create
-    @medical_appointment = MedicalAppointment.new(user_id: current_user.id, medical_department_id: params[:medical_department_id],uid: session[:uid])   
+    @medical_appointment = MedicalAppointment.new(user_id: current_user.id, medical_department_id: params[:medical_department_id])
+    @medical_appointment.uid = current_user.uid
     if @medical_appointment.save
       flash[:notice] = '受付が完了しました'
       redirect_to mains_path
-      session[:uid] = nil
     end
   end
 
