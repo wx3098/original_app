@@ -26,13 +26,15 @@ class MedicalAppointmentsController < ApplicationController
           config.channel_token = ENV['LINE_CHANNEL_TOKEN']
         end
   
-        message = {
-          type: 'text',
-          text: "#{current_user.name}様\n"\
-                "#{@medical_department.hospital.name}\n"\
-                "#{@medical_department.name}\n"\
-                "お待たせしました。診察室へお入り下さい。"
-        }
+        @medical_department.medical_appointments_users.each do |user|
+          if user.uid == @user.uid
+          message = {
+            type: 'text',
+            text: "#{current_user.name}様\n"\
+                  "#{@medical_department.hospital.name}\n"\
+                  "#{@medical_department.name}\n"\
+                  "お待たせしました。診察室へお入り下さい。"
+          }
   
         response = client.push_message(@user.uid, message)
       end
