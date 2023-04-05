@@ -45,7 +45,6 @@ class MedicalAppointmentsController < ApplicationController
   
       @appointment.destroy
       flash[:notice] = '呼び出しました'
-    end
   
     redirect_to medical_departments_path
   end
