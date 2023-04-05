@@ -16,6 +16,7 @@ class MedicalAppointmentsController < ApplicationController
     @appointment = MedicalAppointment.find_by(id: params[:id])
   
     unless @appointment.nil?
+      @appointment.uid = current_user.uid
       if current_user&.provider == "line"
         @user = @appointment.user
         @medical_department = @appointment.medical_department
@@ -26,18 +27,15 @@ class MedicalAppointmentsController < ApplicationController
           config.channel_token = ENV['LINE_CHANNEL_TOKEN']
         end
   
-        @medical_department.medical_appointments_users.each do |user|
-          if user.uid == @user.uid
           message = {
             type: 'text',
-            text: "#{user.name}様\n"\
+            text: "#{@user.name}様\n"\
                   "#{@medical_department.hospital.name}\n"\
                   "#{@medical_department.name}\n"\
                   "お待たせしました。診察室へお入り下さい。"
           }
   
           response = client.push_message(@user.uid, message)
-        end
       end
     end
   
