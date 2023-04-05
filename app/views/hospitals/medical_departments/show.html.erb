@@ -13,7 +13,7 @@
   <h2>呼び出しボタン</h2>
 
   <% if @medical_department.medical_appointments.any? && @medical_department.medical_appointments.first&.present? %>
-    <%= link_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments.first), method: :delete %>  
+    <%= link_to '呼び出し', medical_appointment_path(@medical_department.medical_appointments.first, uid: @medical_department.medical_appointments_users.first&.uid), method: :delete %>  
   <% else %>
     <p>現在、呼び出し可能な患者はいません。</p>
   <% end %>
