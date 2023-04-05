@@ -16,7 +16,6 @@ class MedicalAppointmentsController < ApplicationController
     @appointment = MedicalAppointment.find_by(id: params[:id])
   
     unless @appointment.nil?
-      @appointment.uid = current_user.uid
       if current_user&.provider == "line"
         @user = @appointment.user
         @medical_department = @appointment.medical_department
@@ -35,7 +34,7 @@ class MedicalAppointmentsController < ApplicationController
                   "お待たせしました。診察室へお入り下さい。"
           }
   
-          response = client.push_message(@user.uid, message)
+          response = client.push_message(@appointment.uid, message)
       end
     end
   
