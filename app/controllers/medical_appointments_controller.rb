@@ -34,7 +34,7 @@ class MedicalAppointmentsController < ApplicationController
                   "お待たせしました。診察室へお入り下さい。"
           }
   
-          response = client.push_message(@appointment.uid, message)
+          response = client.push_message(@user.uid, message)
       end
     end
   
