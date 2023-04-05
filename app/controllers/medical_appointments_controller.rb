@@ -17,7 +17,7 @@ class MedicalAppointmentsController < ApplicationController
   
     unless @appointment.nil?
       if current_user&.provider == "line"
-        @user = @appointment.user
+        @user = User.find_by(uid: @appointment.uid)
         @medical_department = @appointment.medical_department
         @hospital = @medical_department.hospital
   
@@ -37,7 +37,7 @@ class MedicalAppointmentsController < ApplicationController
           response = client.push_message(@user.uid, message)
       end
     end
-  
+
       if current_user&.email.present?
         MedicalAppointmentMailer.send_notification(@appointment).deliver_now
       end
