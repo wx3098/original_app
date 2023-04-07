@@ -17,7 +17,7 @@ class MedicalAppointmentsController < ApplicationController
   
     unless @appointment.nil?
       if current_user&.provider == "line"
-        @user = User.find_by(uid: @appointment.uid)
+        @user = @appointment.user
         @medical_department = @appointment.medical_department
         @hospital = @medical_department.hospital
   
